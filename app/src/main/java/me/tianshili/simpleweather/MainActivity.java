@@ -34,49 +34,20 @@ public class MainActivity extends AppCompatActivity {
     String UserID = null;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PERMISSION_GRANTED) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            Location currentLocation;
-            currentLocation = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-            fetchWeatherBasedOnLocation(currentLocation);
-
-            storeLocationData(currentLocation);
-        }
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // create and add ad view (using test ad)
-        AdView adView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        // TODO: create and add ad view (using test ad)
 
-        // get current location
-        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
-            return;
-        }
-        if (mLocationManager != null) {
-            Location currentLocation;
-            currentLocation = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        // TODO: get current location and update the weather information with the location
+        Location currentLocation = null;
 
-            fetchWeatherBasedOnLocation(currentLocation);
-
-            storeLocationData(currentLocation);
-        }
+        storeLocationData(currentLocation);
     }
 
+    // This is a helper function which gets the up-to-date local weather info with the current location passed in, and update the main UI
     void fetchWeatherBasedOnLocation(Location currentLocation) {
-        // get up-to-date local weather info
         if (currentLocation != null) {
             if (mWeatherManager == null) {
                 mWeatherManager = new WeatherManager(this);
@@ -88,36 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void storeLocationData(Location currentLocation) {
-        if (currentLocation != null) {
-            String filename = getString(R.string.location_filename_pattern, getUserID());
-            try {
-                FileOutputStream fos = openFileOutput(filename, Context.MODE_PRIVATE|Context.MODE_APPEND);
-                Gson gson = new Gson();
-                fos.write(gson.toJson(currentLocation).getBytes());
-                fos.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        // TODO: fill this function to store current location data on the phone
     }
 
-    public String getUserID() {
-        if (UserID != null) {
-            Log.d(TAG, "User ID: " + UserID);
-            return UserID;
-        }
-        SharedPreferences user_profile = getSharedPreferences("user_profile", 0);
-        SharedPreferences.Editor editor = user_profile.edit();
-        if (user_profile.getString("user_id", null) == null) {
-            UserID = UUID.randomUUID().toString();
-            editor.putString("user_id", UserID);
-            editor.apply();
-        } else {
-            UserID = user_profile.getString("user_id", null);
-        }
-        Log.d(TAG, "User ID: " + UserID);
-        return UserID;
-    }
 }

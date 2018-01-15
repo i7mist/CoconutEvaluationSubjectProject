@@ -28,15 +28,15 @@ import java.util.Calendar;
 
 public class WeatherManager {
     private String TAG = "WeatherManager";
-    RequestQueue mRequestQueue;
-    Activity mActivity;
-    TextView mLocationNameTextView;
-    TextView mWeatherDescriptionTextView;
-    TextView mTemperatureTextView;
-    TextView mHumidityTextView;
-    TextView mCloudinessTextView;
-    TextView mSunriseTimeTextView;
-    TextView mSunsetTimeTextView;
+    private RequestQueue mRequestQueue;
+    private Activity mActivity;
+    private TextView mLocationNameTextView;
+    private TextView mWeatherDescriptionTextView;
+    private TextView mTemperatureTextView;
+    private TextView mHumidityTextView;
+    private TextView mCloudinessTextView;
+    private TextView mSunriseTimeTextView;
+    private TextView mSunsetTimeTextView;
 
     WeatherManager(Activity activity) {
         mActivity = activity;
