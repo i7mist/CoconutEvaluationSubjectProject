@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SimpleWeather</string>
+    <string name="app_id">ca-app-pub-7075804991999866~9414468598</string>
+    <string name="current_weather_url_str"><![CDATA[http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=6701798ba05d6666089aead7c15b9fc3]]></string>
+    <string name="location_name_pattern">%s, %s</string>
+    <string name="temperature_pattern">%d F</string>
+    <string name="humidity_pattern">%d %%</string>
+    <string name="cloudiness_pattern">%d %%</string>
+    <string name="time_of_day_pattern">%d:%d</string>
+    <string name="location_filename_pattern">%s_location</string>
+</resources>
