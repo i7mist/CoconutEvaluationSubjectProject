@@ -1,30 +1,18 @@
 package me.tianshili.simpleweather;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.annotation.NonNull;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.gson.Gson;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.security.Security;
-import java.util.UUID;
-
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +20,46 @@ public class MainActivity extends AppCompatActivity {
     LocationManager mLocationManager;
     WeatherManager mWeatherManager = null;
     String UserID = null;
+
+    // Check phone-wide location permission
+    private void checkLocationServiceStatus(final Context context) {
+        LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
+
+        if (lm != null) {
+            try {
+                gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            } catch (Exception ignored) {
+            }
+
+            try {
+                network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            } catch (Exception ignored) {
+            }
+        }
+
+        if(!gps_enabled && !network_enabled) {
+            // notify user
+            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+            dialog.setMessage("Google Location services not enabled");
+            dialog.setPositiveButton("Open location settings", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    context.startActivity(myIntent);
+                }
+            });
+            dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+
+                }
+            });
+            dialog.show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +69,18 @@ public class MainActivity extends AppCompatActivity {
         // TODO: create and add ad view (using test ad)
 
         // TODO: get current location and update the weather information with the location
-        Location currentLocation = null;
-
-        storeLocationData(currentLocation);
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        checkLocationServiceStatus(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
     }
 
     // This is a helper function which gets the up-to-date local weather info with the current location passed in, and update the main UI
@@ -59,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void storeLocationData(Location currentLocation) {
-        // TODO: fill this function to store current location data on the phone
+        // TODO: fill and call this function to store current location data on the phone
     }
 
 }
