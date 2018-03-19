@@ -38,44 +38,52 @@
                 <TextView
                     android:gravity="center_horizontal"
                     android:text="Humidity"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
                 <TextView
                     android:gravity="center_horizontal"
                     android:id="@+id/humidity"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </TableRow>
             <TableRow
                 android:gravity="center_horizontal">
                 <TextView
                     android:gravity="center_horizontal"
                     android:text="Cloudiness"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
                 <TextView
                     android:gravity="center_horizontal"
                     android:id="@+id/cloudiness"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </TableRow>
             <TableRow
                 android:gravity="center_horizontal">
                 <TextView
                     android:gravity="center_horizontal"
                     android:text="Sunrise Time"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
                 <TextView
                     android:gravity="center_horizontal"
                     android:id="@+id/sunrise_time"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </TableRow>
             <TableRow
                 android:gravity="center_horizontal">
                 <TextView
                     android:gravity="center_horizontal"
                     android:text="Sunset Time"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
                 <TextView
                     android:gravity="center_horizontal"
                     android:id="@+id/sunset_time"
-                    android:paddingHorizontal="20dp"/>
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </TableRow>
 
         </TableLayout>

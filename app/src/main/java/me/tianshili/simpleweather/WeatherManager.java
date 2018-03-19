@@ -43,13 +43,13 @@ public class WeatherManager {
     WeatherManager(Activity activity) {
         mActivity = activity;
 
-        mLocationNameTextView = mActivity.findViewById(R.id.location_name);
-        mWeatherDescriptionTextView = mActivity.findViewById(R.id.weather_description);
-        mTemperatureTextView = mActivity.findViewById(R.id.temperature);
-        mHumidityTextView = mActivity.findViewById(R.id.humidity);
-        mCloudinessTextView = mActivity.findViewById(R.id.cloudiness);
-        mSunriseTimeTextView = mActivity.findViewById(R.id.sunrise_time);
-        mSunsetTimeTextView = mActivity.findViewById(R.id.sunset_time);
+        mLocationNameTextView = (TextView) mActivity.findViewById(R.id.location_name);
+        mWeatherDescriptionTextView = (TextView) mActivity.findViewById(R.id.weather_description);
+        mTemperatureTextView = (TextView) mActivity.findViewById(R.id.temperature);
+        mHumidityTextView = (TextView) mActivity.findViewById(R.id.humidity);
+        mCloudinessTextView = (TextView) mActivity.findViewById(R.id.cloudiness);
+        mSunriseTimeTextView = (TextView) mActivity.findViewById(R.id.sunrise_time);
+        mSunsetTimeTextView = (TextView) mActivity.findViewById(R.id.sunset_time);
 
         Cache cache = new DiskBasedCache(mActivity.getCacheDir(), 1024 * 1024); // 1MB cap
 
