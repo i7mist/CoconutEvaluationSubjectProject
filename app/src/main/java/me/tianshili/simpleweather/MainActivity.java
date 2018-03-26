@@ -17,7 +17,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    LocationManager mLocationManager;
     WeatherManager mWeatherManager = null;
     String UserID = null;
 
@@ -68,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: create and add ad view (using test ad)
 
-        // TODO: get current location and update the weather information with the location
-        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        // First check whether location service is enabled on the device
         checkLocationServiceStatus(this);
+        // Next check whether location permission is granted
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -81,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        // TODO: get current location and update the weather information with the location (Hint: see function fetchWeatherBasedOnLocation)
     }
 
     // This is a helper function which gets the up-to-date local weather info with the current location passed in, and update the main UI
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void storeLocationData(Location currentLocation) {
-        // TODO: fill and call this function to store current location data on the phone
+        // TODO: complete this function to store current location data on the phone and call it at proper places
     }
 
 }
