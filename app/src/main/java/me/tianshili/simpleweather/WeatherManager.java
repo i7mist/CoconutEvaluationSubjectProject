@@ -69,7 +69,8 @@ public class WeatherManager {
                 destination = {"https://openweathermap.org"},
                 encryptedInTransmission = {false},
                 purposeDescription = {"For automatically fetching local weather information"},
-                retentionTime = {"According to the privacy policy of OpenWeatherMap: Personal information that we process for any purpose or purposes shall not be kept for longer than is necessary for that purpose or those purposes. (https://openweathermap.org/privacy-policy)"}) JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, currentWeatherURL, null, new Response.Listener<JSONObject>() {
+                retentionTime = {"According to the privacy policy of OpenWeatherMap: Personal information that we process for any purpose or purposes shall not be kept for longer than is necessary for that purpose or those purposes. (https://openweathermap.org/privacy-policy)"})
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, currentWeatherURL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
