@@ -84,7 +84,7 @@ public class AnnotationExampleActivity extends AppCompatActivity {
     }
 
     private void startNetworkTraffic(String runRouteRecord) {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, targetURL+runRouteRecord, null, new Response.Listener<JSONObject>() {
+        mRequestQueue.add(new JsonObjectRequest(Request.Method.GET, targetURL+runRouteRecord, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
             }
@@ -92,8 +92,6 @@ public class AnnotationExampleActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
-        });
-        mRequestQueue.add(request);
-
+        }));
     }
 }
